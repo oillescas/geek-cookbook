@@ -21,6 +21,8 @@ find manuscript -type f -name "*.md" -print0 | xargs -0 sed -i "s/📺//g"
 find manuscript -type f -name "*.md" -print0 | xargs -0 sed -i "s/🎥//g"
 find manuscript -type f -name "*.md" -print0 | xargs -0 sed -i "s/🎵//g"
 find manuscript -type f -name "*.md" -print0 | xargs -0 sed -i "s/😁//g"
+find manuscript -type f -name "*.md" -print0 | xargs -0 sed -i "s/🐢//g"
+
 
 # Thanks Bencey for this! (Bencey_#8587)
 
