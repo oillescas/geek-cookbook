@@ -3,7 +3,7 @@
 Everyone is welcome to help contribute to the geek-cookbook, But why would you want to contribute?. Well the main reason why you would like to contribute is there may be a recipe such as turtle-pool. And you know a easier way of creating that recipe so you could type the recipe up yourself and submit it to us and it could be used.
 
 ### How to contribute?
-1. Read xxx [In progress].
+1. Read best ways to create a **[Pull request](https://github.com/kubernetes/community/blob/master/contributors/guide/pull-requests.md#best-practices-for-faster-reviews)**.
 2. Fork the geek-cookbook repository.
 3. Edit/Create the code to suit what you are creating.
 4. Test the code/recipe to make sure it works .
