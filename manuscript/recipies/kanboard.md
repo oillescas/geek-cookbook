@@ -17,7 +17,7 @@ Features include:
 * Free, open source and self-hosted
 * Super simple installation
 
-![](/images/kanboard.png)
+![Kanboard](../images/kanboard.png)
 
 ## Ingredients
 
