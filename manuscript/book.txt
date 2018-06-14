@@ -8,7 +8,7 @@ sections/ha-docker-swarm.md
 ha-docker-swarm/design.md
 ha-docker-swarm/vms.md
 ha-docker-swarm/shared-storage-ceph.md
-ha-docker-swarm/shared-storage-glustermd
+ha-docker-swarm/shared-storage-gluster.md
 ha-docker-swarm/keepalived.md
 ha-docker-swarm/traefik.md
 ha-docker-swarm/docker-swarm-mode.md
