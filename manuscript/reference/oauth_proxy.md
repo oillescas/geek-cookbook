@@ -15,7 +15,7 @@ This is the role of the OAuth proxy.
 When employing the **OAuth proxy** , the proxy sits in the middle of this transaction - traefik sends the web client to the OAuth proxy, the proxy authenticates the user against a 3rd-party source (_GitHub, Google, etc_), and then passes authenticated requests on to the web app in the container.
 
 Illustrated below:
-![OAuth proxy](/images/oauth_proxy.png)
+![OAuth proxy](../images/oauth_proxy.png)
 
 The advantage under this design is additional security. If I'm deploying a web app which I expect only myself to require access to, I'll put the oauth_proxy in front of it. The overhead is negligible, and the additional layer of security is well-worth it.
 
