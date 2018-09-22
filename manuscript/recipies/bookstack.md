@@ -72,7 +72,7 @@ services:
       - /var/data/runtime/bookstack/db:/var/lib/mysql
 
   proxy:
-    image: a5huynh/oauth2_proxy
+    image: funkypenguin/oauth2_proxy
     env_file : /var/data/config/bookstack/bookstack.env
     networks:
       - internal

@@ -85,7 +85,7 @@ services:
         - internal
 
     grafana-proxy:
-      image: a5huynh/oauth2_proxy
+      image: funkypenguin/oauth2_proxy
       env_file : /var/data/config/homeassistant/grafana.env
       dns_search: hq.example.com
       networks:

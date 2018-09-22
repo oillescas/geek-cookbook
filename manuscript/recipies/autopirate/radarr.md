@@ -40,7 +40,7 @@ radarr:
   - internal
 
 radarr_proxy:
-  image: a5huynh/oauth2_proxy
+  image: funkypenguin/oauth2_proxy
   env_file : /var/data/config/autopirate/radarr.env
   networks:
     - internal

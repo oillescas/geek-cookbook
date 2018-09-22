@@ -70,7 +70,7 @@ services:
       - /var/data/wekan/database-dump:/dump
 
   proxy:
-    image: a5huynh/oauth2_proxy
+    image: funkypenguin/oauth2_proxy
     env_file: /var/data/config/wekan/wekan.env
     networks:
       - traefik

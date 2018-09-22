@@ -187,7 +187,7 @@ Create a docker swarm config file in docker-compose syntax (v3), based on the or
                 memory: 64M
 
         grafana-proxy:
-          image: a5huynh/oauth2_proxy
+          image: funkypenguin/oauth2_proxy
           env_file : /var/data/config/swarmprom/grafana.env
           networks:
             - internal
@@ -234,7 +234,7 @@ Create a docker swarm config file in docker-compose syntax (v3), based on the or
                 memory: 64M
 
         alertmanager-proxy:
-          image: a5huynh/oauth2_proxy
+          image: funkypenguin/oauth2_proxy
           env_file : /var/data/config/swarmprom/alertmanager.env
           networks:
             - internal
@@ -266,7 +266,7 @@ Create a docker swarm config file in docker-compose syntax (v3), based on the or
             replicas: 1
 
         unsee-proxy:
-          image: a5huynh/oauth2_proxy
+          image: funkypenguin/oauth2_proxy
           env_file : /var/data/config/swarmprom/unsee.env
           networks:
             - internal
@@ -346,7 +346,7 @@ Create a docker swarm config file in docker-compose syntax (v3), based on the or
                 memory: 128M
 
         prometheus-proxy:
-          image: a5huynh/oauth2_proxy
+          image: funkypenguin/oauth2_proxy
           env_file : /var/data/config/swarmprom/prometheus.env
           networks:
             - internal
