@@ -47,7 +47,7 @@ I created **/var/data/oauth_proxy/authenticated-emails.txt**, and add my own ema
 
 ### Configure stack
 
-You'll need to define a service for the oauth_proxy in every stack which you want to protect. Here's an example from the [Wekan](/recipies/wekan/) recipe:
+You'll need to define a service for the oauth_proxy in every stack which you want to protect. Here's an example from the [Wekan](/recipes/wekan/) recipe:
 
 ```
 proxy:
@@ -77,12 +77,3 @@ Note above how:
 * Labels are required to tell Traefik to forward the traffic to the proxy, rather than the backend container running the app
 * An environment file is defined, but..
 * The redirect URL must still be passed to the oauth_proxy in the command argument
-
-
-## Chef's Notes
-
-### Tip your waiter (donate) 👏
-
-Did you receive excellent service? Want to make your waiter happy? (_..and support development of current and future recipes!_) See the [support](/support/) page for (_free or paid)_ ways to say thank you! 👏
-
-### Your comments? 💬

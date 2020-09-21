@@ -1,169 +1,265 @@
 site_name: Funky Penguin's Geek Cookbook
-site_description: 'The "Geek Cookbook" is a collection of guides for establishing your own highly-available docker container cluster (swarm). This swarm enables you to run self-hosted services such as GitLab, Plex, NextCloud, etc.'
+site_description: 'The Geek Cookbook is a collection of guides for establishing your own highly-available docker container cluster (swarm). This swarm enables you to run self-hosted services such as GitLab, Plex, NextCloud, etc.'
 site_author: 'David Young'
 site_url: 'https://geek-cookbook.funkypenguin.co.nz'
 edit_uri: 'edit/master/manuscript/'
 
 # Fail to build if we have broken links
-strict: true
+# strict: true
 
 # Repository
-repo_name: 'funkypenguin/geek-cookbook'
-repo_url: 'https://github.com/funkypenguin/geek-cookbook'
+repo_name: 'geek-cookbook'
+repo_url: 'https://github.com/geek-cookbook/geek-cookbook'
 
 # Set this to "manuscript" so that we can produce leanpub content
 docs_dir: 'manuscript'
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2017 David Young'
+copyright: 'Copyright &copy; 2016 - 2020 David Young, Funky Penguin Limited'
 
+# Plugins
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - git-revision-date-localized:
+      type: date
+  - autolinks
+
+
+
+  # - htmlproofer
 
 #theme_dir: mkdocs-material
-pages:
-    - Home : index.md
-    - Introduction:
-      - README: README.md
-      - CHANGELOG: CHANGELOG.md
-      - whoami: whoami.md
-    - Essential:
-      - Design: ha-docker-swarm/design.md
-      - VMs: ha-docker-swarm/vms.md
-      - Shared Storage (Ceph): ha-docker-swarm/shared-storage-ceph.md
-      - Shared Storage (GlusterFS): ha-docker-swarm/shared-storage-gluster.md
-      - Keepalived: ha-docker-swarm/keepalived.md
-      - Docker Swarm Mode: ha-docker-swarm/docker-swarm-mode.md
-      - Traefik: ha-docker-swarm/traefik.md
-      - Registry: ha-docker-swarm/registry.md
-      - Mail Server: recipies/mail.md
-      - Duplicity: recipies/duplicity.md
-    - Chef's Favorites:
-      - Huginn: recipies/huginn.md
-      - Kanboard: recipies/kanboard.md
-      - Miniflux: recipies/miniflux.md
-      - Auto Pirate:
-        - Start: recipies/autopirate.md
-        - SABnzbd: recipies/autopirate/sabnzbd.md
-        - NZBGet: recipies/autopirate/nzbget.md
-        - Rtorrent: recipies/autopirate/rtorrent.md
-        - Sonarr: recipies/autopirate/sonarr.md
-        - Radarr: recipies/autopirate/radarr.md
-        - Mylar: recipies/autopirate/mylar.md
-        - Lazy Librarian: recipies/autopirate/lazylibrarian.md
-        - Headphones: recipies/autopirate/headphones.md
-        - Lidarr: recipies/autopirate/lidarr.md
-        - NZBHydra: recipies/autopirate/nzbhydra.md
-        - NZBHydra 2: recipies/autopirate/nzbhydra2.md
-        - Ombi: recipies/autopirate/ombi.md
-        - Jackett: recipies/autopirate/jackett.md
-        - Heimdall: recipies/autopirate/heimdall.md
-        - End: recipies/autopirate/end.md
-      - NextCloud: recipies/nextcloud.md
-      - Plex: recipies/plex.md
-      - Emby: recipies/emby.md
-      - Munin: recipies/munin.md
-      - Home Assistant: recipies/homeassistant.md
-      - OwnTracks: recipies/owntracks.md
-      - Swarmprom: recipies/swarmprom.md
-      - Turtle Pool: recipies/turtle-pool.md
-      - PrivateBin: recipies/privatebin.md
-    - Menu:
-      - Bookstack: recipies/bookstack.md
-      - Ghost: recipies/ghost.md
-      - GitLab: recipies/gitlab.md
-      - GitLab Runner: recipies/gitlab-runner.md
-      - Gollum: recipies/gollum.md
-      - Realms: recipies/realms.md
-      - Piwik: recipies/piwik.md
-      - Wekan: recipies/wekan.md
-      - Tiny Tiny RSS: recipies/tiny-tiny-rss.md
-      - Portainer: recipies/portainer.md
-      - InstaPy: recipies/instapy.md
-      - Calibre-Web: recipies/calibre-web.md
-      - Wallabag: recipies/wallabag.md
-      - CryptoNote Mining Pool:
-        - Start: recipies/cryptonote-mining-pool.md
-#        - Masari: recipies/cryptonote-mining-pool/masari.md
-        - Athena: recipies/cryptonote-mining-pool/athena.md
-      - CryptoMiner:
-        - Start: recipies/cryptominer.md
-        - Mining Rig: recipies/cryptominer/mining-rig.md
-        - AMD GPU: recipies/cryptominer/amd-gpu.md
-        - NVidia GPU: recipies/cryptominer/nvidia-gpu.md
-        - Mining Pools : recipies/cryptominer/mining-pool.md
-        - Wallets : recipies/cryptominer/wallet.md
-        - Exchanges: recipies/cryptominer/exchange.md
-        - Minerhotel: recipies/cryptominer/minerhotel.md
-        - Monitoring: recipies/cryptominer/monitor.md
-        - Profit!: recipies/cryptominer/profit.md
-#      - SSO Stack:
-#        - Start: recipies/sso-stack.md
-#        - OpenLDAP: recipies/sso-stack/openldap.md
-#        - KeyCloak: recipies/sso-stack/keycloak.md
-    - Reference:
-      - OAuth Proxy: reference/oauth_proxy.md
-      - Data Layout: reference/data_layout.md
-      - Networks: reference/networks.md
-      - Containers: reference/containers.md
-      - git-docker : reference/git-docker.md
-      - OpenVPN : reference/openvpn.md
-      - Troubleshooting: reference/troubleshooting.md
-    - Support: support.md
-    - Sponsored Projects: sponsored-projects.md
+nav:
+    - Home: 
+      - What is this: index.md
+      - About: whoami.md
+      - Sponsored Projects: sponsored-projects.md 
+    # - 'Join Us! 🤝':
+    #   - Hello: recipes/general/start.md
+    #   - iPad Pro Geeking: recipes/general/ipad-pro-geeking.md
+    #   - Kid-safe WiFi: recipes/general/kid-safe-wifi.md      
+    # Upcoming section
+    # - '#geeklife':
+    #   - Hello: recipes/general/start.md
+    #   - iPad Pro Geeking: recipes/general/ipad-pro-geeking.md
+    #   - Kid-safe WiFi: recipes/general/kid-safe-wifi.md              
+    - Docker Swarm: 
+      - Preparation:
+        - Design: ha-docker-swarm/design.md
+        - Nodes: ha-docker-swarm/nodes.md
+        - Shared Storage (Ceph): ha-docker-swarm/shared-storage-ceph.md
+        - Shared Storage (GlusterFS): ha-docker-swarm/shared-storage-gluster.md
+        - Keepalived: ha-docker-swarm/keepalived.md
+        - Docker Swarm Mode: ha-docker-swarm/docker-swarm-mode.md
+        - Traefik: ha-docker-swarm/traefik.md
+        - Traefik Forward Auth: 
+            - Start: ha-docker-swarm/traefik-forward-auth.md      
+            - KeyCloak: ha-docker-swarm/traefik-forward-auth/keycloak.md
+        - Registry: ha-docker-swarm/registry.md
+        - Mail Server: recipes/mail.md
+        - Duplicity: recipes/duplicity.md
+      - Chef's Favorites:
+        - Auto Pirate:
+          - Start: recipes/autopirate.md
+          - SABnzbd: recipes/autopirate/sabnzbd.md
+          - NZBGet: recipes/autopirate/nzbget.md
+          - Rtorrent: recipes/autopirate/rtorrent.md
+          - Sonarr: recipes/autopirate/sonarr.md
+          - Radarr: recipes/autopirate/radarr.md
+          - Mylar: recipes/autopirate/mylar.md
+          - Lazy Librarian: recipes/autopirate/lazylibrarian.md
+          - Headphones: recipes/autopirate/headphones.md
+          - Lidarr: recipes/autopirate/lidarr.md
+          - NZBHydra: recipes/autopirate/nzbhydra.md
+          - NZBHydra 2: recipes/autopirate/nzbhydra2.md
+          - Ombi: recipes/autopirate/ombi.md
+          - Jackett: recipes/autopirate/jackett.md
+          - Heimdall: recipes/autopirate/heimdall.md
+          - End: recipes/autopirate/end.md
+        - Emby: recipes/emby.md
+        - Home Assistant:
+          - Start: recipes/homeassistant.md
+          - iBeacon: recipes/homeassistant/ibeacon.md
+        - Huginn: recipes/huginn.md
+        - Jellyfin: recipes/jellyfin.md
+        - Kanboard: recipes/kanboard.md
+        - KeyCloak: 
+          - Start: recipes/keycloak.md      
+          - Users: recipes/keycloak/create-user.md
+          - OIDC Provider: recipes/keycloak/setup-oidc-provider.md        
+          - OpenLDAP: recipes/keycloak/authenticate-against-openldap.md
+        - Miniflux: recipes/miniflux.md
+        - Munin: recipes/munin.md
+        - NextCloud: recipes/nextcloud.md
+        - phpIPAM: recipes/phpipam.md
+        - Plex: recipes/plex.md
+        - PrivateBin: recipes/privatebin.md
+        - Restic: recipes/restic.md          
+        - Swarmprom: recipes/swarmprom.md    
+      - Recipes:
+        - Bitwarden: recipes/bitwarden.md
+        - Bookstack: recipes/bookstack.md
+        - Calibre-Web: recipes/calibre-web.md
+        - Collabora Online: recipes/collabora-online.md
+        - Duplicati: recipes/duplicati.md
+        - ElkarBackup: recipes/elkarbackup.md
+        - Ghost: recipes/ghost.md
+        - GitLab: recipes/gitlab.md
+        - GitLab Runner: recipes/gitlab-runner.md
+        - Gollum: recipes/gollum.md
+        - InstaPy: recipes/instapy.md
+        - KeyCloak: 
+          - Start: recipes/keycloak.md      
+          - Users: recipes/keycloak/create-user.md
+          - OIDC Provider: recipes/keycloak/setup-oidc-provider.md        
+          - OpenLDAP: recipes/keycloak/authenticate-against-openldap.md      
+        - Minio: recipes/minio.md
+        - OpenLDAP: recipes/openldap.md
+        - OwnTracks: recipes/owntracks.md
+        - Photoprism: recipes/photoprism.md
+        - Portainer: recipes/portainer.md
+        - Realms: recipes/realms.md
+        - Restic: recipes/restic.md        
+        - Tiny Tiny RSS: recipes/tiny-tiny-rss.md
+        - Traefik: ha-docker-swarm/traefik.md
+        - Traefik Forward Auth: 
+            - Start: ha-docker-swarm/traefik-forward-auth.md      
+            - KeyCloak: ha-docker-swarm/traefik-forward-auth/keycloak.md
+        - Wallabag: recipes/wallabag.md
+        - Wekan: recipes/wekan.md
+        - Wetty: recipes/wetty.md       
+      - Reference:
+        - OAuth Proxy: reference/oauth_proxy.md
+        - Data Layout: reference/data_layout.md
+        - Networks: reference/networks.md
+        - Containers: reference/containers.md
+        - git-docker : reference/git-docker.md
+        - OpenVPN : reference/openvpn.md
+        - Troubleshooting: reference/troubleshooting.md         
+      - Work-in-Progress:
+  #       - MatterMost: recipes/mattermost.md
+        - IPFS Cluster: recipes/ipfs-cluster.md
+        - MQTT: recipes/mqtt.md
+  #       - HackMD: recipes/hackmd.md
+  #       - Mastodon: recipes/mastodon.md
+  #       - Mayan EDMS: recipes/mayan-edms.md
+  #       - Shaarli: recipes/shaarli.md
+  #       - UniFi Controller: recipes/unifi-controller.md
+  #       - CyberChef : recipes/cyberchef.md
+    - Kubernetes:
+      - Preparation:
+        - Start: kubernetes/start.md
+        - Design: kubernetes/design.md
+        - Cluster: kubernetes/cluster.md
+        - DIY Cluster: kubernetes/diycluster.md
+        - Load Balancer: kubernetes/loadbalancer.md
+        - Snapshots: kubernetes/snapshots.md
+        - Helm: kubernetes/helm.md
+        - Traefik: kubernetes/traefik.md      
+      - Chef's Favorites:
+        - Kanboard: recipes/kubernetes/kanboard.md
+     #   - Kubernetes Dashboard: recipes/kubernetes/kubernetes-dashboard.md
+        - Miniflux: recipes/kubernetes/miniflux.md
+  #      - NextCloud: recipes/kubernetes/nextcloud.md
+  #      - phpIPAM: recipes/kubernetes/phpipam.md
+  #      - PrivateBin: recipes/kubernetes/privatebin.md
+    - Premix:
+      - Start: premix.md
+      - Ansible: 
+        - Operation: premix/ansible/operation.md        
+        - Design: premix/ansible/design.md
+      - Swarm: premix/swarm.md
+      - Kubernetes: premix/kubernetes.md      
+    - CHANGELOG: 
+      - Start: CHANGELOG.md
+    - Support:
+      - Start: support.md      
+    - Contribute:
+      - Start: community/contribute.md
+    - Community: 
+      - Code of Conduct: community/code-of-conduct.md 
+      - Support: support.md      
+      - Contribute: community/contribute.md
+      - Discord: community/discord.md  
+    #   # - Discourse: community/discourse.md
+    #   # - GitHub: community/github.md    
 
 theme:
   name: 'material'
   custom_dir: 'overrides'
   disqus: 'geeks-cookbook'
-  logo: 'images/site-logo.png'
-  favicon: 'images/favicon.ico'
-  feature:
-    tabs: false
+  logo: 'images/site-logo.svg'
+  favicon: 'images/site-logo.svg'
+  features:
+      - tabs
+      - instant 
+  icon:
+    repo: 'fontawesome/brands/github'
   palette:
-    primary: 'brown'
+    primary: 'black'
     accent: 'indigo'
   font:
-    text: 'Roboto'
-    code: 'Roboto Mono'
+    text: 'Ubuntu'
+    code: 'Ubuntu Mono'
+
+extra:
   social:
-    - type: 'github'
+    - icon: 'fontawesome/brands/github'
       link: 'https://github.com/funkypenguin'
-    - type: 'twitter'
+    - icon: 'fontawesome/brands/twitter'
       link: 'https://twitter.com/funkypenguin'
-    - type: 'stack-overflow'
+    - icon: 'fontawesome/brands/stack-overflow'
       link: 'https://stackoverflow.com/cv/funkypenguin'
-    - type: 'rss'
-      link: 'https://www.funkypenguin.co.nz/blog/'
-    - type: 'envelope'
-      link: 'mailto:davidy@funkypenguin.co.nz?Subject=Hello%2C%20from%20a%20geek-cookbook%20reader%20%3B%29'
-    - type: 'book'
-      link: 'https://leanpub.com/geeks-cookbook'
+    - icon: 'material/rss'
+      link: 'https://www.funkypenguin.co.nz/'
+    - icon: 'fontawesome/brands/linkedin'
+      link: 'https://www.linkedin.com/in/funkypenguin'
+    - icon: 'material/library'
+      link: 'https://leanpub.com/geeks-cookbook'    
+    - icon: 'material/mailbox'
+      link: 'mailto:davidy@funkypenguin.co.nz?Subject=Hello%2C%20from%20a%20geek-cookbook%20reader%20%3B%29'             
+  
 
 # Google Analytics
 google_analytics:
   - 'UA-139253-18'
   - 'auto'
 
+extra_css:
+  - 'stylesheets/mailchimp.css'
+
 extra_javascript:
-  - 'extras/javascript/piwik.js'
+  - 'extras/javascript/discord.js' 
 
 # Extensions
 markdown_extensions:
   - admonition
-  - codehilite(linenums=true)
-  - toc(permalink=true)
+  - codehilite:
+      linenums: true
+  - toc:
+      permalink: true
   - footnotes
   - pymdownx.arithmatex
-  - pymdownx.betterem(smart_enable=all)
+  - pymdownx.betterem:
+      smart_enable: all
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg    
   - pymdownx.inlinehilite
-  - pymdownx.magiclink
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: funkypenguin
+      repo: geek-cookbook  
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences
-  - pymdownx.tasklist(custom_checkbox=true)
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.tilde
+  - pymdownx.tabbed  
   - meta

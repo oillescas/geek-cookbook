@@ -2,11 +2,14 @@
 
 While Docker Swarm is great for keeping containers running (_and restarting those that fail_), it does nothing for persistent storage. This means if you actually want your containers to keep any data persistent across restarts (_hint: you do!_), you need to provide shared storage to every docker node.
 
+!!! warning
+    This recipe is deprecated. It didn't work well in 2017, and it's not likely to work any better now. It remains here as a reference. I now recommend the use of [Ceph for shared storage](/ha-docker-swarm/shared-storage-ceph/) instead. - 2019 Chef
+
 ## Design
 
 ### Why GlusterFS?
 
-This GlusterFS recipe was my original design for shared storage, but I [found it to be flawed](ha-docker-swarm/shared-storage-ceph/#why-not-glusterfs), and I replaced it with a [design which employs Ceph instead](http://localhost:8000/ha-docker-swarm/shared-storage-ceph/#why-ceph). This recipe is an alternate to the Ceph design, if you happen to prefer GlusterFS.
+This GlusterFS recipe was my original design for shared storage, but I [found it to be flawed](shared-storage-ceph/#why-not-glusterfs), and I replaced it with a [design which employs Ceph instead](shared-storage-ceph/#why-ceph). This recipe is an alternate to the Ceph design, if you happen to prefer GlusterFS.
 
 ## Ingredients
 
@@ -28,6 +31,7 @@ To build our Gluster volume, we need 2 out of the 3 VMs to provide one "brick". 
 On each host, run a variation following to create your bricks, adjusted for the path to your disk.
 
 !!! note "The example below assumes /dev/vdb is dedicated to the gluster volume"
+
 ```
 (
 echo o # Create a new empty DOS partition table
@@ -55,6 +59,7 @@ mount -a && mount
 Atomic doesn't include the Gluster server components.  This means we'll have to run glusterd from within a container, with privileged access to the host. Although convoluted, I've come to prefer this design since it once again makes the OS "disposable", moving all the config into containers and code.
 
 Run the following on each host:
+
 ````
 docker run \
    -h glusterfs-server \
@@ -68,14 +73,15 @@ docker run \
    --name="glusterfs-server" \
    gluster/gluster-centos
 ````
+
 ### Create trusted pool
 
 On a single node (doesn't matter which), run ```docker exec -it glusterfs-server bash``` to launch a shell inside the container.
 
-From the node, run
-```gluster peer probe <other host>```
+From the node, run `gluster peer probe <other host>`.
 
 Example output:
+
 ```
 [root@glusterfs-server /]# gluster peer probe ds1
 peer probe: success.
@@ -85,6 +91,7 @@ peer probe: success.
 Run ```gluster peer status``` on both nodes to confirm that they're properly connected to each other:
 
 Example output:
+
 ```
 [root@glusterfs-server /]# gluster peer status
 Number of Peers: 1
@@ -99,7 +106,8 @@ State: Peer in Cluster (Connected)
 
 Now we create a *replicated volume* out of our individual "bricks".
 
-Create the gluster volume by running
+Create the gluster volume by running:
+
 ```
 gluster volume create gv0 replica 2 \
  server1:/var/no-direct-write-here/brick1 \
@@ -107,6 +115,7 @@ gluster volume create gv0 replica 2 \
 ```
 
 Example output:
+
 ```
 [root@glusterfs-server /]# gluster volume create gv0 replica 2 ds1:/var/no-direct-write-here/brick1/gv0  ds3:/var/no-direct-write-here/brick1/gv0
 volume create: gv0: success: please start the volume to access data
@@ -138,7 +147,8 @@ echo "$MYHOST:/gv0                /var/data      glusterfs       defaults,_netde
 mount -a
 ```
 
-For some reason, my nodes won't auto-mount this volume on boot. I even tried the trickery below, but they stubbornly refuse to automount.
+For some reason, my nodes won't auto-mount this volume on boot. I even tried the trickery below, but they stubbornly refuse to automount:
+
 ```
 echo -e "\n\n# Give GlusterFS 10s to start before \
 mounting\nsleep 10s && mount -a" >> /etc/rc.local
@@ -151,20 +161,12 @@ For non-gluster nodes, you'll need to replace $MYHOST above with the name of one
 
 After completing the above, you should have:
 
-```
-[X] Persistent storage available to every node
-[X] Resiliency in the event of the failure of a single (gluster) node
-```
+* [X] Persistent storage available to every node
+* [X] Resiliency in the event of the failure of a single (gluster) node
 
-## Chef's Notes
+## Chef's Notes 📓
 
 Future enhancements to this recipe include:
 
 1. Migration of shared storage from GlusterFS to Ceph ()[#2](https://gitlab.funkypenguin.co.nz/funkypenguin/geeks-cookbook/issues/2))
 2. Correct the fact that volumes don't automount on boot ([#3](https://gitlab.funkypenguin.co.nz/funkypenguin/geeks-cookbook/issues/3))
-
-### Tip your waiter (donate) 👏
-
-Did you receive excellent service? Want to make your waiter happy? (_..and support development of current and future recipes!_) See the [support](/support/) page for (_free or paid)_ ways to say thank you! 👏
-
-### Your comments? 💬
